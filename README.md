@@ -4,7 +4,7 @@
 ## About the Project
 This website aim is to apply Emotional Design methods into medical education information and build emotional connection with users. 
 The website introduces information about depression during pregnancy; 
-Users can complete <br>a perinatal depression screen test on this website. 
+Users can complete a perinatal depression screen test on this website. 
 
 **The website has four main selections:**
 
