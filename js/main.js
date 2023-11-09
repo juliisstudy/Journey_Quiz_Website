@@ -64,7 +64,7 @@ function begin() {
     }, 1000);
     $("#preload-wrap").remove();
     journey.init();
-}
+    }
 
 class Journey {
     constructor() {
@@ -86,7 +86,7 @@ class Journey {
         journey.navHoverEffect("#navor", "#navorab");
         journey.navHoverEffect("#navquiz", "#navquizab");
 
-        $(mainNavDiv, this.body).on("click", tabClass, this.onNavClick);
+       // $(mainNavDiv, this.body).on("click", tabClass, this.onNavClick);
         $(introWhyDiv, this.body).on("click", whyWomanSection, this.onWomanClick);
         $(careselectionA, this.body).on("click", selectionTabClass, this.oncareClick);
         $(careSelectionContainerB, this.body).on("click", ".select-b", this.oncarebClick);
@@ -148,61 +148,57 @@ class Journey {
     };
     oncareClick(e) {
         let careTitilesArray = getQueryArray(careselectionA, linktitle);
-        let arrowsArray = getQueryArray(careselectionA, arrow_one);
+        //let arrowsArray = getQueryArray(careselectionA, arrow_one);
         let tab = $(e.target).closest(selectionTabClass);
+        restColorT(careTitilesArray);
 
+        for(const title of careTitilesArray){
+            title.addEventListener("click",function(){
+                //restColorT(careTitilesArray);
+                console.log("sdfaf");
+                this.style.color = darkPink;
+         });
+        } 
+      
         if (tab.hasClass(careFamily)) {
             $(reference).show();
             offScreen(careInfoClass);
             onScreen(careFamilyElm);
-            restColor(careTitilesArray, arrowsArray)
             changeToColor(careTitilesArray[0], color, darkPink);
-            changeToColor(arrowsArray[0], bgColor, darkPink);
 
         } else if (tab.hasClass(careHealth)) {
             $(reference).show();
             offScreen(careInfoClass);
             onScreen(careHealthElm);
-            restColor(careTitilesArray, arrowsArray)
-            changeToColor(careTitilesArray[1], color, darkPink);
-            changeToColor(arrowsArray[1], bgColor, darkPink);
-
+          
         } else if (tab.hasClass(careGroup)) {
             $(reference).show();
             offScreen(careInfoClass);
             onScreen(careGroupElm);
-            restColor(careTitilesArray, arrowsArray)
-            changeToColor(careTitilesArray[2], color, darkPink);
-            changeToColor(arrowsArray[2], bgColor, darkPink);
-
+           
         } else if (tab.hasClass(careWellness)) {
             $(reference).hide();
             offScreen(careInfoClass);
             onScreen(careWellnessElm);
-            restColor(careTitilesArray, arrowsArray)
-            changeToColor(careTitilesArray[3], color, darkPink);
-            changeToColor(arrowsArray[3], bgColor, darkPink);
-
+        
         } else if (tab.hasClass(careTake)) {
             $(reference).show();
             offScreen(careInfoClass);
             onScreen(careTakeElm);
-            restColor(careTitilesArray, arrowsArray)
-            changeToColor(careTitilesArray[4], color, darkPink);
-            changeToColor(arrowsArray[4], bgColor, darkPink);
         }
     };
     oncarebClick(e) {
+
         let tab = $(e.target).closest(".select-b");
         let titlesArray = getQueryArray(careSelectionContainerB, linktitle);
         let arrowsArray = getQueryArray(careSelectionContainerB, arrow_one);
+
         if (tab.hasClass(carehusband)) {
             offScreen(careInfoB);
             offScreen(careFriendElm);
             onScreen(carehusbandElm);
             restColor(titlesArray, arrowsArray);
             changeToColor(titlesArray[0], color, darkPink);
-            changeToColor(arrowsArray[0], color, darkPink);
 
         } else if (tab.hasClass(careFriend)) {
             offScreen(careInfoB);
@@ -210,7 +206,6 @@ class Journey {
             onScreen(careFriendElm);
             restColor(titlesArray, arrowsArray);
             changeToColor(titlesArray[1], color, darkPink);
-            changeToColor(arrowsArray[1], color, darkPink);
         }
     };
     onWomanClick(e) {
@@ -222,31 +217,12 @@ class Journey {
             onScreen(riskWhyDiv);
             restColor(titlesArray, arrowsArray);
             changeToColor(titlesArray[0], color, darkPink);
-            changeToColor(arrowsArray[0], color, darkPink);
         } else if (tab.hasClass(riskwhywoman)) {
             offScreen(riskWhyDiv);
             onScreen(bioWhyDiv);
             restColor(titlesArray, arrowsArray);
             changeToColor(titlesArray[1], color, darkPink);
             changeToColor(arrowsArray[1], color, darkPink);
-        }
-    };
-    onNavClick(e) {
-        e.preventDefault();
-        let tab = $(e.target).closest(tabClass);
-        let aboutDivElm = tab.closest("#mainbody").hasClass("about");
-        let welDivElm = tab.closest("#mainbody").hasClass("welcome");
-
-        if ((tab.hasClass("next") && aboutDivElm) || (tab.hasClass("prev") && welDivElm)) {
-            onScreen(mainNavDiv);
-        }
-
-        if (tab.hasClass("prev")) {
-            let currentPrev = $(".screen.current").prev().attr("data-screen");
-            journey.goscreen(currentPrev);
-        } else if (tab.hasClass("next")) {
-            let currentNext = $(".screen.current").next().attr("data-screen");
-            journey.goscreen(currentNext);
         }
     };
     goscreen(e) {
@@ -262,19 +238,19 @@ class Journey {
         const careNavList = "#fnav,#unav,#snav";
         const returnDiv = "#returna,#returnq,#returnc";
 
+        
         journey.body.removeClass(allPages).addClass(e).find(".screen").removeClass(current).filter('[data-screen="' + e + '"]').addClass("current");
 
-        if ((mainPages.concat("welcome", " ", questionsPage)).indexOf(e) > -1) {
-            $("#prev").hide()
-        } else {
-            $("#prev").show()
-        }
+        // change nav color when click
+        const eachnavs = document.getElementsByClassName("eachnav");
+        $(eachnavs).css(bgColor, lightPink);
 
-        if ((mainPages.concat("about", " ", questionsPage)).indexOf(e) > -1) {
-            $("#next").hide()
-        } else {
-            $("#next").show()
-        }
+        for(const nav of eachnavs){
+            nav.addEventListener("click",function(){
+                $(nav).css(bgColor, lightPink);
+                this.style.backgroundColor = darkPink;
+         });
+        } 
 
         if (sectionPages.indexOf(e) > -1) {
             $(navList).hide();
@@ -296,11 +272,9 @@ class Journey {
         }
         if ("why".indexOf(e) > -1) {
             $(whatNavList).addClass("eachnav").css(bgColor, lightPink);
-            $("#whynav").css(bgColor, darkPink);
         }
         if ("outcome".indexOf(e) > -1) {
             $(whatNavList).addClass("eachnav").css(bgColor, lightPink);
-            $("#outcomenav").css(bgColor, darkPink);
         }
         if ("careself".indexOf(e) > -1) {
             $(careNavList).css(bgColor, lightPink);
@@ -309,12 +283,10 @@ class Journey {
         }
         if ("carefriend".indexOf(e) > -1) {
             $(careNavList).css(bgColor, lightPink);
-            $("#fnav").css(bgColor, darkPink);
             $(whatNavList).removeClass("eachnav");
         }
         if ("caremethod".indexOf(e) > -1) {
             $(careNavList).css(bgColor, lightPink);
-            $("#unav").css(bgColor, darkPink);
             $(whatNavList).removeClass("eachnav");
         }
         if (questionsPage.indexOf(e) > -1) {
@@ -341,9 +313,14 @@ class Journey {
             $("#sum").addClass(off_Screen);
         }
         if ("quizpage".indexOf(e) > -1) {
+            const startBtn = document.getElementById('nextqa');
+            startBtn.addEventListener("click",function(){
+                        $(startBtn).hide();
+            });
             clearNav();
             $("#navquiza").removeClass(off_Screen);
             $("#navquiz").css(bgColor, darkPink);
+            $(startBtn).show();
         }
         if ("orgnation".indexOf(e) > -1) {
             clearNav();
@@ -490,6 +467,10 @@ function restColor(titles, arrows) {
     arrows.map((arrow) => changeToColor(arrow, bgColor, lightPink))
 }
 
+function restColorT(titles) {
+    titles.map((title) => changeToColor(title, color, lightPink));
+}
+
 function getQueryArray(elementDiv, elementClass) {
     const divElm = document.querySelector(elementDiv);
     const arrayElm = divElm.querySelectorAll(elementClass);
@@ -505,3 +486,4 @@ function clearNav(){
     $(".n").css(bgColor, lightPink);
     $(".navp").addClass(off_Screen);
 }
+
