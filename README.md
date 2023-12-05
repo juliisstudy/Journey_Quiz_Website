@@ -2,11 +2,12 @@
 <h1 align="center" id="top">JOURNEY Website</h1>
 
 ## About the Project
-This website aim is to apply Emotional Design methods into medical education information and build emotional connection with users. 
-The website introduces information about depression during pregnancy; 
-Users can complete a perinatal depression screen test on this website. 
+This website aims to apply Emotional Design methods to medical education information and build emotional connections with users. The website introduces information about depression during pregnancy; Users can complete a perinatal depression screen test on this website. 
+<a href="https://www.jlcodefun.com/jourey">More details about working process</a>
+<br/>
 <br/>
 ![](journey.jpg)
+
 **The website has four main selections:**
 
 <ul>
