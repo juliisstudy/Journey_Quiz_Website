@@ -2,21 +2,18 @@
 <h1 align="center" id="top">JOURNEY Website</h1>
 
 ## About the Project
-This website aims to apply Emotional Design methods to medical education information and build emotional connections with users. The website introduces information about depression during pregnancy; Users can complete a perinatal depression screen test on this website. 
-<br/>
+This website aims to apply Emotional Design methods to medical education information and build emotional connections with users. The website introduces information about depression during pregnancy.
 <br/>
 ![](journey.jpg)
+**Main Features:**
 
-**The website has four main selections:**
+* Using Storytelling Illustration Methods to Visualization Information about Depression during Pregnancy 
+* Interactive screening test
 
-<ul>
-<li>Introduction about depression during pregnancy</li>
-<li>Depression During Pregnancy screening test</li>
-<li>Information from organizations that help pregnant women who suffer from depression</li>
-<li>Care and treatment information</li>
-</ul>
+![](quiz-2.jpg)
+![](quiz-3.jpg)
 
-<br/>
+
 
 ## Built With
 
